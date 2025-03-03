@@ -44,13 +44,13 @@ let main = document.createElement("main");
 root.append(main);
 
 let sectionNowShowing = document.createElement("section");
+sectionNowShowing.classList.add("nowShowing")
 main.append(sectionNowShowing);
 
 let headlineNow = document.createElement("h2");
 headlineNow.innerHTML = "Now Showing";
 
-
-
+sectionNowShowing.append(headlineNow);
 
 function fetchMovie() { 
 fetch("https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_release_type=2|3&release_date.gte={min_date}&release_date.lte={max_date}'https://api.themoviedb.org/3/trending/movie/week", {
@@ -78,14 +78,14 @@ sectionNowShowing.innerHTML += data.results.map((movie) => {
     <a href="detail-movie.html">
     <article>
         <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
-        <h2>${movie.title}</h2>
-        <i class="fa-solid fa-star"></i><p>${movie.vote_average}/10 IMDb</p>
+        <h3>${movie.title}</h3>
+        <p><i class="fa-solid fa-star"></i>${movie.vote_average}/10 IMDb</p>
     </article>
     </a>
     `
 }).join("");
 
-sectionNowShowing.append(headlineNow);
+
 
 })
 
