@@ -43,8 +43,8 @@ input, textarea {
 grid-column: 3;
 position: relative;
     display: inline-block;
-    width: 60px;
-    height: 34px;
+    width: 38px;
+    height: 21px;
   }
   
   /* Hide default HTML checkbox */
@@ -70,10 +70,10 @@ position: relative;
   .slider:before {
     position: absolute;
     content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
+    height: 17px;
+    width: 17px;
+    left: 1.5px;
+    bottom: 1.8px;
     background-color: white;
     -webkit-transition: .4s;
     transition: .4s;
@@ -88,9 +88,9 @@ position: relative;
   }
   
   input:checked + .slider:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
+    -webkit-transform: translateX(17);
+    -ms-transform: translateX(17px);
+    transform: translateX(17px);
   }
   
   /* Rounded sliders */

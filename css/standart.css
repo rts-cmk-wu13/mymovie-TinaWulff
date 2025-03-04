@@ -15,8 +15,30 @@ body {
     font-family: "mulish", sans-serif;
 }
 
+section {
+    margin: 1em 2em;
+}
+
 h1, h2 {
     font-family: "merriweather", serif;
+
+}
+
+h1 {
+    align-self: center;
+}
+
+h2 {
+    font-size: 16px;
+    margin-bottom: 1em;
+}
+
+h3 {
+    font-size: 14px;
+}
+
+p {
+    font-size: 12px;
 }
 
 #root {

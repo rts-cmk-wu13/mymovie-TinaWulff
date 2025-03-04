@@ -1,7 +1,7 @@
 /* hent google font*/
 
 .nowShowing img {
-max-width: 9em;
+    max-width: 9em;
 }
 
 
@@ -10,7 +10,7 @@ max-width: 9em;
     display: grid;
     grid-template-columns: repeat(20, 1fr);
     grid-template-rows: 1fr;
-    margin: 0 1em;
+    /* margin: 0 1em; */
     column-gap: 1em;
 }
 
@@ -37,14 +37,12 @@ box-shadow: 0 4px 12px 6px rgba(0, 0, 0, 0.2);
 }
 
 article h3 {
-font-size: 14px;
 grid-row: 2;
 margin: 0.5em;
 }
 
 article p {
     color: #9C9C9C;
-    font-size: 12px;
     grid-row: 3/3;
 }
 

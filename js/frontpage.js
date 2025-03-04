@@ -121,7 +121,8 @@ function fetchPopular() {
     .then((data) => {
         console.log("Populære film:", data.results);
 
-        // Fetch detaljer for hver film
+
+// Fetch detaljer for hver film
         let movieDetailsFetches = data.results.map(movie => {
             return fetch(`https://api.themoviedb.org/3/movie/${movie.id}?append_to_response=genres,runtime`, {
                 headers: {
@@ -137,10 +138,10 @@ function fetchPopular() {
             });
         });
 
-        // Når alle fetches er færdige, kombinér dataene
+        // Når alle fetches er færdige, kombinér dataene // venter på alle fetch-kald.
         return Promise.all(movieDetailsFetches).then((moviesDetails) => {
             let combinedMovies = data.results.map((movie, index) => ({
-                ...movie, // Beholder originaldata
+                ...movie, //Dette er spread-syntax (...), som kopierer alle egenskaber fra movie og tilføjer til det nye objekt.
                 genres: moviesDetails[index].genres, // Tilføjer genres
                 runtime: moviesDetails[index].runtime // Tilføjer runtime
             }));
@@ -153,15 +154,17 @@ function fetchPopular() {
 
         sectionPopular.innerHTML += movieWithDetails.map((movie) => {
             return `
-                <a class="now-showing__linkCard" href="detail-movie.html">
-                <article class="now-showing__card">
+                <a class="popular__linkCard" href="detail-movie.html">
+                <article class="popular__card">
                     <img loading="lazy" src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
+                    <div class="details-container">
                     <h3>${movie.title}</h3>
                     <p><i class="fa-solid fa-star"></i>${movie.vote_average}/10 IMDb</p>
                     <div class="genre-container">
                         ${movie.genres.map(genre => `<p class="genre">${genre.name}</p>`).join("")}
                     </div>
                     <p class="time"><i class="fa-regular fa-clock"></i> ${movie.runtime} min</p>
+                    </div>
                 </article>
                 </a>    
             `;
