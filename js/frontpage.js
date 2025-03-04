@@ -177,3 +177,20 @@ function fetchPopular() {
 
 fetchPopular();
 fetchMovie();
+
+
+let footer = document.createElement("footer");
+root.append(footer);
+
+let movieIcon = document.createElement("i");
+movieIcon.classList.add("fa-regular", "fa-tape");
+
+let ticketIcon = document.createElement("i");
+ticketIcon.classList.add("fa-regular", "fa-ticket-simple");
+
+let bookmarkIcon = document.createElement("i");
+bookmarkIcon.classList.add("fa-regular", "fa-bookmark");
+
+footer.appendChild(movieIcon);
+footer.appendChild(ticketIcon);
+footer.appendChild(bookmarkIcon);

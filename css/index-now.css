@@ -1,4 +1,10 @@
-/* hent google font*/
+
+main 
+{
+    padding-bottom: 80px;
+    overflow: auto;     /*for at footer kan side over main og main kan scroller bagved*/
+}
+
 
 .nowShowing img {
     max-width: 9em;
@@ -12,12 +18,21 @@
     grid-template-rows: 1fr;
     /* margin: 0 1em; */
     column-gap: 1em;
+    
+    overflow-x: auto;
+    margin-left: 1em;
+    margin-bottom: 2em;
+    padding-bottom: 1em;
 }
 
 .nowShowing__headline {
     grid-column: span 20;
-    margin: 0.5em 0;
+    margin: 1em 0;
 
+}
+
+.now-showing__card {
+    flex-shrink: 0  
 }
 
 /*.now-showing__linkCard {

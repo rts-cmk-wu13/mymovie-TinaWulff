@@ -3,11 +3,13 @@
 header {
     width: 100%;
     max-width: 100%;
+
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     align-items: center;
-    margin: 2em;
+    /* margin: 2em; */
     margin-bottom: 1em;
+    margin-top: 2em;
 }
 
 h1 {
@@ -16,5 +18,38 @@ h1 {
     font-family: "merriweather", serif;
 }
 
+nav {
+    margin-left: 1em;
+}
+
+.switch {
+margin-right: 1em;
+}
 
 
+/* FOOTER */
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 1em 0; /* Justeret padding */
+    display: flex;
+    justify-content: space-around;
+    align-items: center; /* Centrerer ikonerne vertikalt */
+    background-color: #fff;
+    box-shadow: 0 -4px 8px 0 rgba(0, 0, 0, 0.15); /* Skygge på toppen */
+    z-index: 5;
+}
+
+footer i {
+    font-size: 1.5em;
+    color: #BCBCCD;
+    display: inline-block;
+}
+
+/*
+main {
+    overflow: auto; //er i anden fil
+}
+/*for at footer kan side over main og main kan scroller bagved*/
