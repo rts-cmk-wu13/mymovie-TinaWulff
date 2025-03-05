@@ -54,8 +54,16 @@ headlineNow.classList.add("nowShowing__headline")
 sectionNowShowing.append(headlineNow);
 
 
+const urlParams = new URLSearchParams(window.location.search);
+const id = urlParams.get("id"); // Eksempel: hvis URL'en er "movie.html?id=12345"
+
 function fetchMovie() { 
-fetch("https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc", {
+    let today = new Date().toISOString().split("T")[0]; // Henter dagens dato i YYYY-MM-DD format
+    let lastMonth = new Date();
+    lastMonth.setMonth(lastMonth.getMonth() - 1); // En måned tilbage
+    let lastMonthStr = lastMonth.toISOString().split("T")[0]; 
+
+fetch(`https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_release_type=2|3&release_date.gte=${lastMonthStr}&release_date.lte=${today}`, {
     headers: {
       accept: 'application/json',
       Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1NDYyY2I2YzRlYmRhMGY1MDA2ZDYyNDY4N2IxMjhkYiIsIm5iZiI6MTc0MDk4Njc3Ny4xNjEsInN1YiI6IjY3YzU1OTk5ODgxYzAxM2VkZTdhNmZiMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.6OZhglLj6yu_2o1SQDcbLtUloW0Z0qhIE7r1-ZmZeN8'
@@ -77,7 +85,7 @@ fetch("https://api.themoviedb.org/3/discover/movie?include_adult=false&include_v
 sectionNowShowing.innerHTML += data.results.map((movie) => {
     return`
 
-    <a class="now-showing__linkCard" href="detail-movie.html">
+    <a class="now-showing__linkCard" href="detail-movie.html?id=${movie.id}">
     <article class="now-showing__card">
         <img loading="lazy" src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
         <h3>${movie.title}</h3>
@@ -154,7 +162,7 @@ function fetchPopular() {
 
         sectionPopular.innerHTML += movieWithDetails.map((movie) => {
             return `
-                <a class="popular__linkCard" href="detail-movie.html">
+                <a class="popular__linkCard" href="detail-movie.html?id=${movie.id}">
                 <article class="popular__card">
                     <img loading="lazy" src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
                     <div class="details-container">
