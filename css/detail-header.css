@@ -1,0 +1,31 @@
+
+
+
+.hero-header {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.hero-header img {
+    width: 100%;
+    max-width: 100%;
+    grid-area: 1/1/2/-1;    
+}
+
+.hero-header i {
+    grid-area: 1/1/2/-1;  
+    color: #fff;
+    order: 1;
+    margin-top: 2em;
+    margin-left: 1.5em;
+    font-size: 1em;
+}
+
+.hero-header .switch-container {
+    grid-area: 1/1/2/-1;
+    order: 1;
+    align-self: flex-start;
+    margin-top: 2em;
+    margin-right: 1.5em;
+}
+

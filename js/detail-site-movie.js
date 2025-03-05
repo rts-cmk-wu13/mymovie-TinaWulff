@@ -108,7 +108,9 @@ fetch(`https://api.themoviedb.org/3/movie/${id}?language=en-US&append_to_respons
         console.log(rating);
         //
 
+        //HEADER
         let header = document.createElement("header");
+        header.classList.add("hero-header");
         root.append(header);
 
         let goBackArrow = document.createElement("i");
@@ -138,6 +140,7 @@ fetch(`https://api.themoviedb.org/3/movie/${id}?language=en-US&append_to_respons
 
         heroImg.alt = movie.title;
         header.append(heroImg);
+        //SLUT HEADER SLUT
 
         //MAIN
         let main = document.createElement("main");
