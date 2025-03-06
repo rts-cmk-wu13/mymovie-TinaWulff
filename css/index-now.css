@@ -10,7 +10,6 @@ main
     max-width: 9em;
 }
 
-
 .nowShowing {
     max-width: 100%;
     display: grid;
@@ -28,7 +27,6 @@ main
 .nowShowing__headline {
     grid-column: span 20;
     margin: 1em 0;
-
 }
 
 .now-showing__card {

@@ -53,3 +53,11 @@ a {
 
 
 
+p {
+    color: #9C9C9C;
+}
+
+.fa-star {
+    color: #FFC319;
+    margin-right: 0.5em;
+}

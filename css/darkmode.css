@@ -42,7 +42,7 @@ input, textarea {
 }
 
 /* Sikrer at header og overskrifter også skifter farve */
-header, h1, h2, h3, p {
+/*header, h1, h2, h3, p {
     color: var(--dark-color);
 }
 
@@ -52,7 +52,7 @@ header, h1, h2, h3, p {
 [data-dark="true"] h3,
 [data-dark="true"] p {
     color: var(--light-color);
-}
+}*/
 /* CHAT SLUT VIRKER IKKE */
 
 

@@ -113,13 +113,19 @@ fetch(`https://api.themoviedb.org/3/movie/${id}?language=en-US&append_to_respons
         header.classList.add("hero-header");
         root.append(header);
 
+        let arrowLink = document.createElement("a");
+        arrowLink.classList.add("arrow-link");
+        arrowLink.href= "index.html";
+        header.append(arrowLink);
+
         let goBackArrow = document.createElement("i");
         goBackArrow.classList.add("fa-solid", "fa-arrow-left-long");
-        header.append(goBackArrow);
+        arrowLink.append(goBackArrow);
 
         let heroImg = document.createElement("img");
-        heroImg.src = `https://image.tmdb.org/t/p/w500${movie.backdrop_path}`
-
+        heroImg.src = `https://image.tmdb.org/t/p/original${movie.backdrop_path}`
+        heroImg.alt = movie.title;
+        header.append(heroImg);
 
         // Darkmode knap
         let switchMode = document.createElement("div");
@@ -138,8 +144,6 @@ fetch(`https://api.themoviedb.org/3/movie/${id}?language=en-US&append_to_respons
         sliderRoundCSS.classList.add("slider", "round");
         switchLabel.append(swicthInput, sliderRoundCSS);
 
-        heroImg.alt = movie.title;
-        header.append(heroImg);
         //SLUT HEADER SLUT
 
         //MAIN
@@ -170,18 +174,18 @@ fetch(`https://api.themoviedb.org/3/movie/${id}?language=en-US&append_to_respons
         detailsSection.append(factSection);
 
         factSection.innerHTML = `
-    <p><i class="fa-solid fa-star"></i>${movie.vote_average}/10 IMDb</p>
+    <p class="point"><i class="fa-solid fa-star"></i>${movie.vote_average}/10 IMDb</p>
 
     <div class="genre-container">
     ${movie.genres.map(genre => `<p class="genre">${genre.name}</p>`).join("")}
     </div>
 
     <h3 class="detail__fact-header">Length</h3>
-    <p>${movie.runtime}</p>
+    <p class="detail__fact-value">${movie.runtime}</p>
     <h3 class="detail__fact-header">Language</h3>
-    <p>${languageName}</p>
+    <p class="detail__fact-value">${languageName}</p>
     <h3 class="detail__fact-header">Rating</h3>
-    <p>${rating}</p>
+    <p class="detail__fact-value">${rating}</p>
     `
 
         //DESCRPTION SECTION
@@ -201,7 +205,7 @@ fetch(`https://api.themoviedb.org/3/movie/${id}?language=en-US&append_to_respons
         // CAST_SECTION
 
         let castSection = document.createElement("section");
-        castSection.classList.add("detail__cart-section");
+        castSection.classList.add("detail__cast-section");
         detailsSection.append(castSection);
 
         let castHeadline = document.createElement("h2");
@@ -214,8 +218,11 @@ fetch(`https://api.themoviedb.org/3/movie/${id}?language=en-US&append_to_respons
 
         castDiv.innerHTML = `
      ${movie.credits.cast.map(cast => `
+     
+     <div class="cast-card">
      <img src="https://image.tmdb.org/t/p/w300/${cast.profile_path}" alt="${cast.name}">
-     <p>${cast.name}</p>`)
+     <p>${cast.name}</p>
+     </div>`)
                 .join("")}
     `
     });

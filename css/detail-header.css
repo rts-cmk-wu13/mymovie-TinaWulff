@@ -7,18 +7,22 @@
 }
 
 .hero-header img {
-    width: 100%;
     max-width: 100%;
+    min-height: 18.75em;
+    object-fit: cover;
     grid-area: 1/1/2/-1;    
 }
 
-.hero-header i {
+.hero-header a {
     grid-area: 1/1/2/-1;  
     color: #fff;
     order: 1;
     margin-top: 2em;
     margin-left: 1.5em;
     font-size: 1em;
+    position: absolute;
+    z-index: 10;
+    cursor: pointer;
 }
 
 .hero-header .switch-container {
