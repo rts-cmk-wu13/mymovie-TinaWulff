@@ -38,6 +38,15 @@ switchLabel.append(swicthInput, sliderRoundCSS);
 
 // HEADER SLUT
 
+
+
+// TIL OBSERVER / INFINITY SCROLL
+let currentPageMovies = 1;
+let currentPagePopular = 1;
+let isFetchingMovies = false;
+let isFetchingPopular = false;
+
+
 // MOVIES NOW SHOWING SECTION
 
 let main = document.createElement("main");
@@ -57,7 +66,17 @@ sectionNowShowing.append(headlineNow);
 const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get("id"); // Eksempel: hvis URL'en er "movie.html?id=12345"
 
+
+// ✅ Opret "Now Showing" loader før observeren!
+let loaderNow = document.createElement("div");
+loaderNow.classList.add("loader");
+sectionNowShowing.append(loaderNow);
+
+
 function fetchMovie() { 
+    if (isFetchingMovies) return; // Undgå dobbelt kald
+    isFetchingMovies = true;
+
     let today = new Date().toISOString().split("T")[0]; // Henter dagens dato i YYYY-MM-DD format
     let lastMonth = new Date();
     lastMonth.setMonth(lastMonth.getMonth() - 1); // En måned tilbage
@@ -95,11 +114,25 @@ sectionNowShowing.innerHTML += data.results.map((movie) => {
     `
 }).join("");
 
+currentPageMovies++;
+isFetchingMovies = false;
+})
+.catch(error => {
+console.error("Fejl:", error);
+isFetchingMovies = false;
+
+let loaderNow= document.createElement("div");
+loaderNow.classList.add("loader");
+sectionNowShowing.append(loaderNow);
 
 })
 }
-
 // SHOWING NOW SLUT
+
+
+
+
+
 
 // POPULAR SECTION BEGYND
 
@@ -112,8 +145,16 @@ headlinePopular.classList.add("sectionPopular__headline");
 headlinePopular.innerHTML = "Popular"
 sectionPopular.append(headlinePopular);
 
+//loader før observer
+let loaderPopular = document.createElement("div");
+loaderPopular.classList.add("loader");
+sectionPopular.append(loaderPopular);
+
 
 function fetchPopular() { 
+    if (isFetchingPopular) return; // Undgå dobbelt kald
+    isFetchingPopular = true;
+
     fetch("https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc", {
         headers: {
           accept: 'application/json',
@@ -129,7 +170,7 @@ function fetchPopular() {
     .then((data) => {
         console.log("Populære film:", data.results);
 
-
+    
 // Fetch detaljer for hver film
         let movieDetailsFetches = data.results.map(movie => {
             return fetch(`https://api.themoviedb.org/3/movie/${movie.id}?append_to_response=genres,runtime`, {
@@ -177,16 +218,40 @@ function fetchPopular() {
                 </a>    
             `;
         }).join("");
+
+        currentPagePopular++;
+        isFetchingPopular = false;
     })
     .catch(error => {
         console.error("Fejl:", error);
-    });
-}
+        isFetchingPopular = false;
 
+    });
+};
+
+let observerMovies = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            fetchMovie();
+        }
+    });
+}, options);
+
+let observerPopular = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            fetchPopular();
+        }
+    });
+}, options);
+
+//KALD FUNKTIONERNE
 fetchPopular();
 fetchMovie();
+observerMovies.observe(loaderNow);
+observerPopular.observe(loaderPopular);
 
-
+// FOOTER
 let footer = document.createElement("footer");
 root.append(footer);
 
@@ -198,6 +263,7 @@ ticketIcon.classList.add("fa-regular", "fa-ticket-simple");
 
 let bookmarkIcon = document.createElement("i");
 bookmarkIcon.classList.add("fa-regular", "fa-bookmark");
+
 
 footer.appendChild(movieIcon);
 footer.appendChild(ticketIcon);
