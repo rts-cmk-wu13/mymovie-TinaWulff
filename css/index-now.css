@@ -42,20 +42,21 @@ article img {
 border-radius: 10px;
 max-width: 30%;
 grid-row: 1;
-box-shadow: 0 4px 12px 6px rgba(0, 0, 0, 0.2);
+margin-bottom: 0.5em;
+/* box-shadow: 0 4px 12px 6px rgba(0, 0, 0, 0.2); */
 }
 
 article h3 {
 grid-row: 2;
-margin: 0.5em;
+/* margin: 0.5em; */
 }
 
 article p {
-    color: #9C9C9C;
+    /* color: #9C9C9C; */
     grid-row: 3/3;
 }
 
-article i {
+article .fa-star {
     color: #FFC319;
     grid-row: 3/3;
     margin-right: 0.5em;

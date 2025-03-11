@@ -30,6 +30,9 @@ height: auto;
 .details-container {
 grid-column: 2;
 max-width: 100%;
+display: flex;
+flex-direction: column;
+gap: 0.5em;
 }
 
 .genre-container {
@@ -53,5 +56,5 @@ max-width: 100%;
 }
 
 .fa-clock {
-    color: #000;
+    /* color: #000; */
 }

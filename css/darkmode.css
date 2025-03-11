@@ -4,10 +4,29 @@
 
 :root {
     color-scheme: light dark;
-    --dark-color: hsl(0, 0, 10%);
-    --light-color: hsl(0, 0, 97%);
+    /* --dark-color: hsl(250, 21, 10%);
+    --light-color: hsl(0, 0, 97%); */
+}
+/*
+#root, header, footer, body, main, section, h2, h3, p {
+  */
+
+  html, footer, h2, h3, h4, p {
+  color: light-dark(#000, #F0EFFA);
+  background-color: light-dark(#fff, #15141F);
 }
 
+footer {
+  background-color: light-dark(#fff, #000);
+}
+
+i {
+  color: light-dark(#000, #F0EFFA);
+}
+
+.now-showing__card img {
+  box-shadow: 0 6px 12px 0px light-dark(#9C9C9C, #FFC31933);
+}
 
 [data-dark="true"] {
     color-scheme: dark;
@@ -16,45 +35,6 @@
 [data-dark="false"] {
     color-scheme: light;
 }
-
-
-html, input, textarea {
-    color: light-dark(var(--dark-color), var(--light-color));
-    background-color: light-dark(var(--light-color), var(--dark-color));
-
-}
-
-input, textarea {
-    border: 1px solid light-dark(var(--dark-color), var(--light-color));
-}
-
-/* CHAT HJÆLP */
-[data-dark="true"] {
-    color-scheme: dark;
-    background-color: var(--dark-color);
-    color: var(--light-color);
-}
-
-[data-dark="false"] {
-    color-scheme: light;
-    background-color: var(--light-color);
-    color: var(--dark-color);
-}
-
-/* Sikrer at header og overskrifter også skifter farve */
-/*header, h1, h2, h3, p {
-    color: var(--dark-color);
-}
-
-[data-dark="true"] header,
-[data-dark="true"] h1,
-[data-dark="true"] h2,
-[data-dark="true"] h3,
-[data-dark="true"] p {
-    color: var(--light-color);
-}*/
-/* CHAT SLUT VIRKER IKKE */
-
 
 
 /* DARK MODE SWITCH */
@@ -90,7 +70,7 @@ position: relative;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #ccc;
+    background-color: light-dark(#ccc, #fff);
     -webkit-transition: .4s;
     transition: .4s;
   }
@@ -102,17 +82,17 @@ position: relative;
     width: 17px;
     left: 1.5px;
     bottom: 1.8px;
-    background-color: white;
+    background-color: light-dark(#fff, #15141F);
     -webkit-transition: .4s;
     transition: .4s;
   }
   
   input:checked + .slider {
-    background-color: #2196F3;
+    background-color: light-dark(#AAA9B1, #fff)
   }
   
   input:focus + .slider {
-    box-shadow: 0 0 1px #2196F3;
+    box-shadow: 0 0 1px light-dark(#AAA9B1, #fff)
   }
   
   input:checked + .slider:before {
@@ -129,5 +109,11 @@ position: relative;
   .slider.round:before {
     border-radius: 50%;
   }
-  
 
+
+  
+/* DARK-MODE
+i {
+  color: #F0EFFA;
+}
+  */

@@ -15,7 +15,9 @@
     padding: 2em;
     position: relative;
     bottom: 2em;
-    background-color: #fff;
+    z-index: 2;
+    /* background-color: #fff; */
+    background-color: light-dark(#fff, #15141F);
 }
 
 .detail__header {
@@ -23,6 +25,9 @@
     justify-content: space-between;
 }
 
+i .fa-arrow-left-long {
+    text-shadow: 0px px 6px rgba(0, 0, 0, 0.9);
+}
 
 .detail__fact-section {
 display: grid;
@@ -46,14 +51,13 @@ margin: 1em 0;
 .detail__fact-value {
     grid-row: 4;
     font-weight: bold;
-    color: #000;
+    /* color: #000; */
 }
 
 .detail__header h1 {
 font-family: "Mulish", sans-serif;
 font-size: 20px;
 font-weight: bold;
-
 }
 
 .genre-container {
@@ -72,12 +76,14 @@ font-weight: bold;
     font-weight: bold;
     color: #88A4E8;
     border-radius: 15px;
-
+    margin-right: 1em;
+    /* white-space: nowrap; */
 }
 
+/* 
 .genre:nth-child(2) {
 margin: 0 1em;
-}
+} */
 
 .descript__headline {
     margin: 2em 0 1em;
@@ -110,4 +116,32 @@ border-radius: 5px;
     font-size: 0.75em;
     color: "#000";
     margin-bottom: 1em;
+}
+
+
+
+
+/* FOOTER */
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 1em 0; /* Justeret padding */
+    display: flex;
+    justify-content: space-around;
+    align-items: center; /* Centrerer ikonerne vertikalt */
+    /* background-color: #fff; */
+    box-shadow: 0 -4px 8px 0 rgba(0, 0, 0, 0.15); /* Skygge på toppen */
+    z-index: 5;
+}
+
+footer i {
+    font-size: 1.5em;
+    color: #BCBCCD;
+    display: inline-block;
+}
+
+.fa-ticket-simple {
+ transform: rotate(90deg);
 }

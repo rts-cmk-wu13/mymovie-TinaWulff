@@ -96,6 +96,8 @@ function fetchMovie() {
     lastMonth.setMonth(lastMonth.getMonth() - 1); // En måned tilbage
     let lastMonthStr = lastMonth.toISOString().split("T")[0]; 
 
+    // https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${currentPageMovies}&sort_by=primary_release_date.desc&with_release_type=2|3&primary_release_date.gte=${lastMonthStr}&primary_release_date.lte=${today}`,
+    
     fetch(`https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${currentPageMovies}&sort_by=popularity.desc&with_release_type=2|3&release_date.gte=${lastMonthStr}&release_date.lte=${today}`, {
         headers: {
         accept: 'application/json',
@@ -259,10 +261,10 @@ let footer = document.createElement("footer");
 root.append(footer);
 
 let movieIcon = document.createElement("i");
-movieIcon.classList.add("fa-regular", "fa-tape");
+movieIcon.classList.add("fa-solid", "fa-tape");
 
 let ticketIcon = document.createElement("i");
-ticketIcon.classList.add("fa-regular", "fa-ticket-simple");
+ticketIcon.classList.add("fa-solid", "fa-ticket-simple");
 
 let bookmarkIcon = document.createElement("i");
 bookmarkIcon.classList.add("fa-regular", "fa-bookmark");

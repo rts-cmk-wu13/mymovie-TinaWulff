@@ -15,7 +15,7 @@
 
 .hero-header a {
     grid-area: 1/1/2/-1;  
-    color: #fff;
+    /* color: #fff; */
     order: 1;
     margin-top: 2em;
     margin-left: 1.5em;
