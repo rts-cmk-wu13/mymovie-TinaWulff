@@ -10,14 +10,10 @@ main
     max-width: 9em;
 }
 
-.nowShowing {
-    max-width: 100%;
-    display: grid;
-    grid-template-columns: repeat(20, 1fr);
-    grid-template-rows: 1fr;
+.flex-container {
+    display: flex;
     /* margin: 0 1em; */
-    column-gap: 1em;
-    
+    gap: 1em;  
     overflow-x: auto;
     margin-left: 1em;
     margin-bottom: 2em;
@@ -25,12 +21,12 @@ main
 }
 
 .nowShowing__headline {
-    grid-column: span 20;
-    margin: 1em 0;
+    margin: 1em 1em;
+    width: 100%;
 }
 
 .now-showing__card {
-    flex-shrink: 0  
+ 
 }
 
 /*.now-showing__linkCard {

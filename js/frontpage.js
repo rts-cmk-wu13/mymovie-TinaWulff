@@ -40,14 +40,20 @@ switchLabel.append(swicthInput, sliderRoundCSS);
 
 
 
-// TIL OBSERVER / INFINITY SCROLL
-let currentPageMovies = 1;
-let currentPagePopular = 1;
-let isFetchingMovies = false;
-let isFetchingPopular = false;
+// // TIL OBSERVER / INFINITY SCROLL
+// let currentPageMovies = 1;
+// let currentPagePopular = 1;
+// let isFetchingMovies = false;
+// let isFetchingPopular = false;
 
 
 // MOVIES NOW SHOWING SECTION
+
+// TIL OBSERVER / INFINITY SCROLL
+let currentPageMovies = 1;
+let isFetchingMovies = false;
+let lastElement;
+
 
 let main = document.createElement("main");
 root.append(main);
@@ -63,17 +69,25 @@ headlineNow.classList.add("nowShowing__headline")
 sectionNowShowing.append(headlineNow);
 
 
+let flexContainer = document.createElement("div");
+flexContainer.classList.add("flex-container");
+sectionNowShowing.append(flexContainer);
+
+
 const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get("id"); // Eksempel: hvis URL'en er "movie.html?id=12345"
 
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            console.log("Fetching more movies...");
+            observer.unobserve(entry.target);
+            fetchMovie(); 
+        }
+    });
+}, { root: flexContainer, rootMargin: "100px", threshold: 0.1 }); //lav kommentar til dette
 
-// ✅ Opret "Now Showing" loader før observeren!
-let loaderNow = document.createElement("div");
-loaderNow.classList.add("loader");
-sectionNowShowing.append(loaderNow);
-
-
-function fetchMovie() { 
+function fetchMovie() {
     if (isFetchingMovies) return; // Undgå dobbelt kald
     isFetchingMovies = true;
 
@@ -82,60 +96,55 @@ function fetchMovie() {
     lastMonth.setMonth(lastMonth.getMonth() - 1); // En måned tilbage
     let lastMonthStr = lastMonth.toISOString().split("T")[0]; 
 
-fetch(`https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_release_type=2|3&release_date.gte=${lastMonthStr}&release_date.lte=${today}`, {
-    headers: {
-      accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1NDYyY2I2YzRlYmRhMGY1MDA2ZDYyNDY4N2IxMjhkYiIsIm5iZiI6MTc0MDk4Njc3Ny4xNjEsInN1YiI6IjY3YzU1OTk5ODgxYzAxM2VkZTdhNmZiMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.6OZhglLj6yu_2o1SQDcbLtUloW0Z0qhIE7r1-ZmZeN8'
-    }
-})
-    .then(response => {
-        console.log(response.ok);
-
-        if(!response.ok) {
-            throw new Error("movie findes ikke!!!!")
+    fetch(`https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${currentPageMovies}&sort_by=popularity.desc&with_release_type=2|3&release_date.gte=${lastMonthStr}&release_date.lte=${today}`, {
+        headers: {
+        accept: 'application/json',
+        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1NDYyY2I2YzRlYmRhMGY1MDA2ZDYyNDY4N2IxMjhkYiIsIm5iZiI6MTc0MDk4Njc3Ny4xNjEsInN1YiI6IjY3YzU1OTk5ODgxYzAxM2VkZTdhNmZiMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.6OZhglLj6yu_2o1SQDcbLtUloW0Z0qhIE7r1-ZmZeN8'
         }
-        return response.json()
     })
+        .then(response => {
+            console.log(response.ok);
 
-.then((data) => {
-    console.log(data);
+            if(!response.ok) {
+                throw new Error("movie findes ikke!!!!")
+            }
+            return response.json()
+        })
 
+    .then((data) => {
+        console.log(data);
 
-sectionNowShowing.innerHTML += data.results.map((movie) => {
-    return`
+        flexContainer.innerHTML += data.results.map((movie) => {
+            return`
 
-    <a class="now-showing__linkCard" href="detail-movie.html?id=${movie.id}">
-    <article class="now-showing__card">
-        <img loading="lazy" src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
-        <h3>${movie.title}</h3>
-        <p><i class="fa-solid fa-star"></i>${movie.vote_average}/10 IMDb</p>
-    </article>
-    </a>
-    `
-}).join("");
+            <a class="now-showing__linkCard" href="detail-movie.html?id=${movie.id}">
+            <article class="now-showing__card">
+                <img loading="lazy" src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
+                <h3>${movie.title}</h3>
+                <p><i class="fa-solid fa-star"></i>${movie.vote_average}/10 IMDb</p>
+            </article>
+            </a>
+            `
+        }).join("");
 
-currentPageMovies++;
-isFetchingMovies = false;
-})
-.catch(error => {
-console.error("Fejl:", error);
-isFetchingMovies = false;
+        let lastMovie = flexContainer.lastElementChild;
+        if (lastMovie) {
+            observer.observe(lastMovie);
+        }
 
-let loaderNow= document.createElement("div");
-loaderNow.classList.add("loader");
-sectionNowShowing.append(loaderNow);
-
-})
+        currentPageMovies++;
+        isFetchingMovies = false;
+    });
 }
 // SHOWING NOW SLUT
 
 
-
-
-
+// TIL OBSERVER / INFINITY SCROLL
+let currentPagePopMovies = 1;
+let isFetchingPopMovies = false;
+let PoplastElement;
 
 // POPULAR SECTION BEGYND
-
 let sectionPopular = document.createElement("section");
 sectionPopular.classList.add("sectionPopular");
 main.append(sectionPopular);
@@ -151,11 +160,23 @@ loaderPopular.classList.add("loader");
 sectionPopular.append(loaderPopular);
 
 
-function fetchPopular() { 
-    if (isFetchingPopular) return; // Undgå dobbelt kald
-    isFetchingPopular = true;
+const observerPop = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            console.log("Fetching more popular movies...");
+            observerPop.unobserve(entry.target);
+            fetchPopular(); 
+        }
+    });
+}, { root: null, rootMargin: "200px", threshold: 0.1 }); //lav kommentar til dette
 
-    fetch("https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc", {
+
+
+function fetchPopular() { 
+    if (isFetchingPopMovies) return; // Undgå dobbelt kald
+    isFetchingPopMovies = true;
+
+    fetch(`https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${currentPagePopMovies}&sort_by=popularity.desc`, {
         headers: {
           accept: 'application/json',
           Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1NDYyY2I2YzRlYmRhMGY1MDA2ZDYyNDY4N2IxMjhkYiIsIm5iZiI6MTc0MDk4Njc3Ny4xNjEsInN1YiI6IjY3YzU1OTk5ODgxYzAxM2VkZTdhNmZiMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.6OZhglLj6yu_2o1SQDcbLtUloW0Z0qhIE7r1-ZmZeN8'
@@ -218,40 +239,22 @@ function fetchPopular() {
                 </a>    
             `;
         }).join("");
+    
 
-        currentPagePopular++;
-        isFetchingPopular = false;
-    })
-    .catch(error => {
-        console.error("Fejl:", error);
-        isFetchingPopular = false;
+    let lastPopMovie = sectionPopular.lastElementChild;
+    if (lastPopMovie) {
+        observerPop.observe(lastPopMovie);
+    }
 
-    });
-};
+    currentPagePopMovies++;
+    isFetchingPopMovies = false;
+});
+}
 
-let observerMovies = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            fetchMovie();
-        }
-    });
-}, options);
-
-let observerPopular = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            fetchPopular();
-        }
-    });
-}, options);
-
-//KALD FUNKTIONERNE
-fetchPopular();
 fetchMovie();
-observerMovies.observe(loaderNow);
-observerPopular.observe(loaderPopular);
+fetchPopular();
 
-// FOOTER
+// footer
 let footer = document.createElement("footer");
 root.append(footer);
 
