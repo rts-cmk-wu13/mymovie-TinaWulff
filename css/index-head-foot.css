@@ -33,14 +33,18 @@ footer {
     bottom: 0;
     left: 0;
     width: 100%;
-    padding: 1em 0; /* Justeret padding */
+    padding: 1em 1em; /* Justeret padding */
+
     display: flex;
     justify-content: space-around;
+
     align-items: center; /* Centrerer ikonerne vertikalt */
     /* background-color: #fff; */
     box-shadow: 0 -4px 8px 0 rgba(0, 0, 0, 0.15); /* Skygge på toppen */
     z-index: 5;
 }
+
+
 
 footer i {
     font-size: 1.5em;

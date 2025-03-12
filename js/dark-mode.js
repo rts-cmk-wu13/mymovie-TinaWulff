@@ -16,7 +16,6 @@ if (isDarkMode == null) {
 }
 
 
-
 if(darkState) {
     console.log("Er du darkmode?")
     switchElm.checked = true;
@@ -27,7 +26,6 @@ if(darkState) {
     switchElm.checked = false
     rootElm.setAttribute("data-dark", switchElm.checked)
 }
-
 
 
 switchElm.addEventListener("change", function(){

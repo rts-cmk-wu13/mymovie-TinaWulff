@@ -10,7 +10,7 @@ root.id = "root";
 document.body.append(root);
 
 // Hent kun den specifikke film baseret på ID
-fetch(`https://api.themoviedb.org/3/movie/${id}?language=en-US&append_to_response=release_dates,credits`, {
+fetch(`https://api.themoviedb.org/3/movie/${id}?language=en-US&append_to_response=release_dates,credits,videos`, {
     headers: {
         accept: 'application/json',
         Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1NDYyY2I2YzRlYmRhMGY1MDA2ZDYyNDY4N2IxMjhkYiIsIm5iZiI6MTc0MDk4Njc3Ny4xNjEsInN1YiI6IjY3YzU1OTk5ODgxYzAxM2VkZTdhNmZiMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.6OZhglLj6yu_2o1SQDcbLtUloW0Z0qhIE7r1-ZmZeN8`
@@ -92,9 +92,12 @@ fetch(`https://api.themoviedb.org/3/movie/${id}?language=en-US&append_to_respons
         title.textContent = movie.title;
         sectionHeader.append(title);
 
+        let bookmarkBtn = document.createElement("button");
+        bookmarkBtn.classList.add("bookmark-button");
+        sectionHeader.append(bookmarkBtn);
         let bookmarkIcon = document.createElement("i");
         bookmarkIcon.classList.add("fa-regular", "fa-bookmark");
-        sectionHeader.append(bookmarkIcon);
+        bookmarkBtn.append(bookmarkIcon);
 
         //SECTON_FACTS
         let factSection = document.createElement("section");
@@ -129,6 +132,42 @@ fetch(`https://api.themoviedb.org/3/movie/${id}?language=en-US&append_to_respons
         let = descriptParagraph = document.createElement("p");
         descriptParagraph.textContent = movie.overview;
         descriptSection.append(descriptParagraph);
+
+// trailer section
+
+
+const trailer = movie.videos.results.find(video => video.type === "Trailer" && video.site === "YouTube");
+
+if (trailer) {
+    const videoKey = trailer.key;
+    const trailerUrl = `https://www.youtube.com/embed/${videoKey}`;
+    // Skab iframe og append den
+
+let trailerSection = document.createElement("section");
+trailerSection.classList.add("trailer-section");
+
+const trailerHeadline = document.createElement("h2");
+trailerHeadline.class = "trailer-headline";
+trailerHeadline.textContent = "Trailer";
+trailerSection.append(trailerHeadline);
+
+const trailerContainer = document.createElement("div");
+trailerContainer.classList.add("trailer-container");
+trailerSection.append(trailerContainer);
+
+const traileriframe = document.createElement("iframe");
+traileriframe.width = "100%";
+traileriframe.height = "100%";
+traileriframe.src = trailerUrl;
+traileriframe.allowFullscreen = true;
+traileriframe.frameBorder = "0";
+detailsSection.append(trailerSection);
+trailerSection.append(trailerContainer);
+trailerContainer.append(traileriframe);
+
+} else {
+    console.log("Ingen trailer fundet");
+}
 
         // CAST_SECTION
 
@@ -171,4 +210,5 @@ bookmarkIcon.classList.add("fa-regular", "fa-bookmark");
 footer.appendChild(movieIcon);
 footer.appendChild(ticketIcon);
 footer.appendChild(bookmarkIcon);
+
 

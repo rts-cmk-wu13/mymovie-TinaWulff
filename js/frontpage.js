@@ -260,16 +260,25 @@ fetchPopular();
 let footer = document.createElement("footer");
 root.append(footer);
 
+let movieLink = document.createElement("a");
 let movieIcon = document.createElement("i");
 movieIcon.classList.add("fa-solid", "fa-tape");
+movieLink.appendChild(movieIcon);
 
+let ticketLink = document.createElement("a");
 let ticketIcon = document.createElement("i");
 ticketIcon.classList.add("fa-solid", "fa-ticket-simple");
+ticketLink.appendChild(ticketIcon);
+
+let bookmarkLink = document.createElement("a");
+bookmarkLink.href = "#"
+bookmarkLink.classList.add("bookmark-link");
+
 
 let bookmarkIcon = document.createElement("i");
 bookmarkIcon.classList.add("fa-regular", "fa-bookmark");
+bookmarkLink.appendChild(bookmarkIcon);
 
-
-footer.appendChild(movieIcon);
-footer.appendChild(ticketIcon);
-footer.appendChild(bookmarkIcon);
+footer.appendChild(movieLink);
+footer.appendChild(ticketLink);
+footer.appendChild(bookmarkLink);
