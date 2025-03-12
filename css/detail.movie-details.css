@@ -2,10 +2,11 @@
     height: 100vh;
 }
 
-/* main {
-    display: flex;
-    flex-direction: column;
-} */
+ main {
+position: relative;
+top: -48px;
+z-index: -1;
+ }
 
 .details__section {
     width: 100%;

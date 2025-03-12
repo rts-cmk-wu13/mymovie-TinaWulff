@@ -9,6 +9,40 @@ let root = document.createElement("div");
 root.id = "root";
 document.body.append(root);
 
+
+  //HEADER
+  let header = document.createElement("header");
+  header.classList.add("hero-header");
+  root.append(header);
+
+  let arrowLink = document.createElement("a");
+  arrowLink.classList.add("arrow-link");
+  arrowLink.href = "index.html";
+  header.append(arrowLink);
+
+  let goBackArrow = document.createElement("i");
+  goBackArrow.classList.add("fa-solid", "fa-arrow-left-long");
+  arrowLink.append(goBackArrow);
+
+  // Darkmode knap
+  let switchMode = document.createElement("div");
+  switchMode.classList.add("switch-container");
+  header.append(switchMode);
+
+  let switchLabel = document.createElement("label");
+  switchLabel.classList.add("switch");
+  switchMode.append(switchLabel);
+
+  let swicthInput = document.createElement("input");
+  swicthInput.type = "checkbox";
+  swicthInput.id = "switch";
+
+  let sliderRoundCSS = document.createElement("span");
+  sliderRoundCSS.classList.add("slider", "round");
+  switchLabel.append(swicthInput, sliderRoundCSS);
+
+  //SLUT HEADER SLUT
+
 // Hent kun den specifikke film baseret på ID
 fetch(`https://api.themoviedb.org/3/movie/${id}?language=en-US&append_to_response=release_dates,credits,videos`, {
     headers: {
@@ -36,48 +70,21 @@ fetch(`https://api.themoviedb.org/3/movie/${id}?language=en-US&append_to_respons
         console.log(rating);
         //
 
-        //HEADER
-        let header = document.createElement("header");
-        header.classList.add("hero-header");
-        root.append(header);
-
-        let arrowLink = document.createElement("a");
-        arrowLink.classList.add("arrow-link");
-        arrowLink.href = "index.html";
-        header.append(arrowLink);
-
-        let goBackArrow = document.createElement("i");
-        goBackArrow.classList.add("fa-solid", "fa-arrow-left-long");
-        arrowLink.append(goBackArrow);
-
-        let heroImg = document.createElement("img");
-        heroImg.src = `https://image.tmdb.org/t/p/original${movie.backdrop_path}`
-        heroImg.alt = movie.title;
-        header.append(heroImg);
-
-        // Darkmode knap
-        let switchMode = document.createElement("div");
-        switchMode.classList.add("switch-container");
-        header.append(switchMode);
-
-        let switchLabel = document.createElement("label");
-        switchLabel.classList.add("switch");
-        switchMode.append(switchLabel);
-
-        let swicthInput = document.createElement("input");
-        swicthInput.type = "checkbox";
-        swicthInput.id = "switch";
-
-        let sliderRoundCSS = document.createElement("span");
-        sliderRoundCSS.classList.add("slider", "round");
-        switchLabel.append(swicthInput, sliderRoundCSS);
-
-        //SLUT HEADER SLUT
-
+    
         //MAIN
         let main = document.createElement("main");
         root.append(main);
 
+        //hero-sction
+        let heroDiv = document.createElement("div");
+        heroDiv.classList.add("hero-div");
+        main.append(heroDiv);
+
+        let heroImg = document.createElement("img");
+        heroImg.src = `https://image.tmdb.org/t/p/original${movie.backdrop_path}`
+        heroImg.alt = movie.title;
+        heroDiv.append(heroImg);
+        
         //SECTION
         let detailsSection = document.createElement("section");
         detailsSection.classList.add("details__section");

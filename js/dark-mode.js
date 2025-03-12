@@ -1,11 +1,12 @@
-document.addEventListener("DOMContentLoaded", function() {
 
-    let rootElm = document.documentElement; //tager html'tagget i head i HTML'en
+let rootElm = document.documentElement; //tager html'tagget i head i HTML'en
 let switchElm = document.querySelector("#switch");
 let isDarkMode = readFromLocalStorage("isDarkMode");
 let browserDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
 console.log("matchMedia", browserDark);
 console.log("localstorage", isDarkMode);
+console.log(document.querySelector("header"));
+
 
 let darkState = null
 
@@ -14,7 +15,6 @@ if (isDarkMode == null) {
 } else {
     darkState = isDarkMode;
 }
-
 
 if(darkState) {
     console.log("Er du darkmode?")
@@ -41,5 +41,5 @@ if(switchElm.checked) {
 
 })
 
-})
+
 // Se sidste 5 minutter på video for sidste rettelser
