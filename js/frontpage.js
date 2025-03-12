@@ -270,15 +270,15 @@ let ticketIcon = document.createElement("i");
 ticketIcon.classList.add("fa-solid", "fa-ticket-simple");
 ticketLink.appendChild(ticketIcon);
 
-let bookmarkLink = document.createElement("a");
-bookmarkLink.href = "#"
-bookmarkLink.classList.add("bookmark-link");
-
 
 let bookmarkIcon = document.createElement("i");
 bookmarkIcon.classList.add("fa-regular", "fa-bookmark");
-bookmarkLink.appendChild(bookmarkIcon);
+//function til at linke i stedet for a-tag
+bookmarkIcon.addEventListener("click", function () {
+    window.location.href = "saved-bookmark.html";
+});
+
 
 footer.appendChild(movieLink);
 footer.appendChild(ticketLink);
-footer.appendChild(bookmarkLink);
+footer.appendChild(bookmarkIcon);

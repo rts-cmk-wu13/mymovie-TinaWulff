@@ -43,7 +43,7 @@ fetch(`https://api.themoviedb.org/3/movie/${id}?language=en-US&append_to_respons
 
         let arrowLink = document.createElement("a");
         arrowLink.classList.add("arrow-link");
-        arrowLink.href= "index.html";
+        arrowLink.href = "index.html";
         header.append(arrowLink);
 
         let goBackArrow = document.createElement("i");
@@ -92,12 +92,46 @@ fetch(`https://api.themoviedb.org/3/movie/${id}?language=en-US&append_to_respons
         title.textContent = movie.title;
         sectionHeader.append(title);
 
+        // BOOKMARKING IKONER/BTN OG FUNKTIONALITET til at skifte mellem udfyldt bookmark og tom
+
+        // Hent gemte favoritter fra localStorage
+        let favorites = readFromLocalStorage("favorites") || [];
+        let isFavorite = favorites.includes(id);
+
         let bookmarkBtn = document.createElement("button");
-        bookmarkBtn.classList.add("bookmark-button");
-        sectionHeader.append(bookmarkBtn);
+        bookmarkBtn.classList.add("bookmark_btn"); // Basis-knapklasse
+        bookmarkBtn.setAttribute("data-favid", id); // Sætter data-attributten
+
+        // Opret <i>-ikonet til bogmærket
         let bookmarkIcon = document.createElement("i");
-        bookmarkIcon.classList.add("fa-regular", "fa-bookmark");
-        bookmarkBtn.append(bookmarkIcon);
+        bookmarkIcon.classList.add("fa-regular", "fa-bookmark"); // Standard ikon
+
+        // Hvis filmen er favorit, ændrer vi ikonet
+        if (isFavorite) {
+            bookmarkIcon.classList.replace("fa-regular", "fa-solid"); // Ændrer til udfyldt ikon
+        }
+
+        bookmarkBtn.append(bookmarkIcon); // Tilføjer ikonet til knappen
+        sectionHeader.append(bookmarkBtn);
+
+
+        // Funktionen til at opdatere gemt/ikke gemt
+        bookmarkBtn.addEventListener("click", function () {
+            let favorites = readFromLocalStorage("favorites") || [];
+            let movieId = this.dataset.favid;
+
+            if (favorites.includes(movieId)) {
+                favorites = favorites.filter(favId => favId !== movieId);
+                bookmarkIcon.classList.replace("fa-solid", "fa-regular"); // Skift tilbage til tomt ikon
+            } else {
+                favorites.push(movieId);
+                bookmarkIcon.classList.replace("fa-regular", "fa-solid"); // Skift til udfyldt ikon
+            }
+
+            saveToLocalStorage("favorites", favorites);
+        });
+
+
 
         //SECTON_FACTS
         let factSection = document.createElement("section");
@@ -133,41 +167,41 @@ fetch(`https://api.themoviedb.org/3/movie/${id}?language=en-US&append_to_respons
         descriptParagraph.textContent = movie.overview;
         descriptSection.append(descriptParagraph);
 
-// trailer section
+        // trailer section
 
 
-const trailer = movie.videos.results.find(video => video.type === "Trailer" && video.site === "YouTube");
+        const trailer = movie.videos.results.find(video => video.type === "Trailer" && video.site === "YouTube");
 
-if (trailer) {
-    const videoKey = trailer.key;
-    const trailerUrl = `https://www.youtube.com/embed/${videoKey}`;
-    // Skab iframe og append den
+        if (trailer) {
+            const videoKey = trailer.key;
+            const trailerUrl = `https://www.youtube.com/embed/${videoKey}`;
+            // Skab iframe og append den
 
-let trailerSection = document.createElement("section");
-trailerSection.classList.add("trailer-section");
+            let trailerSection = document.createElement("section");
+            trailerSection.classList.add("trailer-section");
 
-const trailerHeadline = document.createElement("h2");
-trailerHeadline.class = "trailer-headline";
-trailerHeadline.textContent = "Trailer";
-trailerSection.append(trailerHeadline);
+            const trailerHeadline = document.createElement("h2");
+            trailerHeadline.class = "trailer-headline";
+            trailerHeadline.textContent = "Trailer";
+            trailerSection.append(trailerHeadline);
 
-const trailerContainer = document.createElement("div");
-trailerContainer.classList.add("trailer-container");
-trailerSection.append(trailerContainer);
+            const trailerContainer = document.createElement("div");
+            trailerContainer.classList.add("trailer-container");
+            trailerSection.append(trailerContainer);
 
-const traileriframe = document.createElement("iframe");
-traileriframe.width = "100%";
-traileriframe.height = "100%";
-traileriframe.src = trailerUrl;
-traileriframe.allowFullscreen = true;
-traileriframe.frameBorder = "0";
-detailsSection.append(trailerSection);
-trailerSection.append(trailerContainer);
-trailerContainer.append(traileriframe);
+            const traileriframe = document.createElement("iframe");
+            traileriframe.width = "100%";
+            traileriframe.height = "100%";
+            traileriframe.src = trailerUrl;
+            traileriframe.allowFullscreen = true;
+            traileriframe.frameBorder = "0";
+            detailsSection.append(trailerSection);
+            trailerSection.append(trailerContainer);
+            trailerContainer.append(traileriframe);
 
-} else {
-    console.log("Ingen trailer fundet");
-}
+        } else {
+            console.log("Ingen trailer fundet");
+        }
 
         // CAST_SECTION
 
@@ -194,7 +228,7 @@ trailerContainer.append(traileriframe);
     `
     });
 
-    // footer
+// footer
 let footer = document.createElement("footer");
 root.append(footer);
 
@@ -204,11 +238,17 @@ movieIcon.classList.add("fa-solid", "fa-tape");
 let ticketIcon = document.createElement("i");
 ticketIcon.classList.add("fa-solid", "fa-ticket-simple");
 
-let bookmarkIcon = document.createElement("i");
-bookmarkIcon.classList.add("fa-regular", "fa-bookmark");
+let bookmarkIconSite = document.createElement("i");
+bookmarkIconSite.classList.add("fa-regular", "fa-bookmark");
+//function til at linke i stedet for a-tag
+
+bookmarkIconSite.addEventListener("click", function () {
+    window.location.href = "saved-bookmark.html";
+});
+
 
 footer.appendChild(movieIcon);
 footer.appendChild(ticketIcon);
-footer.appendChild(bookmarkIcon);
+footer.appendChild(bookmarkIconSite);
 
 

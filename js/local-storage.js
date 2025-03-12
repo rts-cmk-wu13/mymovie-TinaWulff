@@ -62,6 +62,8 @@ function readFromLocalStorage(key) {
 
 }
 
+
+
 function deleteFromLocalStorage(key) {
     localStorage.removeItem(key)
     return "the Element with" + key + "was deleted"

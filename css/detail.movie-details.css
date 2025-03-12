@@ -30,12 +30,12 @@
     color: #fff;
 }
 
-.bookmark-button {
+.bookmark_btn {
     background: none;
     border: none;
 }
 
-.bookmark-button i {
+.bookmark_btn i {
 font-size: 1.5em;
 }
 
@@ -168,4 +168,11 @@ footer i {
 
 .fa-ticket-simple {
     transform: rotate(90deg);
+}
+
+
+/* BOOKMARKING */
+
+.favorite_btn--selected {
+    
 }
