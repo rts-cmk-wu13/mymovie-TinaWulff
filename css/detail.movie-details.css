@@ -24,7 +24,7 @@
 
 
 
- main {
+main {
 position: relative;
 top: -48px;
 z-index: 0;
@@ -42,16 +42,7 @@ z-index: 0;
     background-color: light-dark(#fff, #15141F);
 }
 
-.detail__header {
-    display: flex;
-    justify-content: space-between;
-}
 
- .fa-arrow-left-long {
-    text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.9);
-    font-size: 1.2em;
-    color: #fff;
-}
 
 .bookmark_btn {
     background: none;

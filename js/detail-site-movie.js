@@ -1,4 +1,47 @@
+// Hent film-ID fra URL'en
+const urlParams = new URLSearchParams(window.location.search);
+const id = urlParams.get("id"); // Eksempel: hvis URL'en er "movie.html?id=12345"
 
+
+// ROOT WRAPPER DIV
+
+let root = document.createElement("div");
+console.log(root);
+root.id = "root";
+document.body.append(root);
+
+//HEADER
+let header = document.createElement("header");
+header.classList.add("hero-header");
+root.append(header);
+
+let arrowLink = document.createElement("a");
+arrowLink.classList.add("arrow-link");
+arrowLink.href = "index.html";
+header.append(arrowLink);
+
+let goBackArrow = document.createElement("i");
+goBackArrow.classList.add("fa-solid", "fa-arrow-left-long");
+arrowLink.append(goBackArrow);
+
+// Darkmode knap
+let switchMode = document.createElement("div");
+switchMode.classList.add("switch-container");
+header.append(switchMode);
+
+let switchLabel = document.createElement("label");
+switchLabel.classList.add("switch");
+switchMode.append(switchLabel);
+
+let swicthInput = document.createElement("input");
+swicthInput.type = "checkbox";
+swicthInput.id = "switch";
+
+let sliderRoundCSS = document.createElement("span");
+sliderRoundCSS.classList.add("slider", "round");
+switchLabel.append(swicthInput, sliderRoundCSS);
+
+//SLUT HEADER SLUT
 
 // Hent kun den specifikke film baseret på ID
 fetch(`https://api.themoviedb.org/3/movie/${id}?language=en-US&append_to_response=release_dates,credits,videos`, {
@@ -106,7 +149,7 @@ fetch(`https://api.themoviedb.org/3/movie/${id}?language=en-US&append_to_respons
             saveToLocalStorage("favorites", favorites);
         });
 
-
+        let formatedRuntime = `${Math.floor(movie.runtime / 60)}h ${movie.runtime % 60}m`;
 
         //SECTON_FACTS
         let factSection = document.createElement("section");
@@ -121,7 +164,7 @@ fetch(`https://api.themoviedb.org/3/movie/${id}?language=en-US&append_to_respons
     </div>
 
     <h3 class="detail__fact-header">Length</h3>
-    <p class="detail__fact-value">${movie.runtime}</p>
+    <p class="detail__fact-value">${formatedRuntime}</p>
     <h3 class="detail__fact-header">Language</h3>
     <p class="detail__fact-value">${languageName}</p>
     <h3 class="detail__fact-header">Rating</h3>

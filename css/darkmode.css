@@ -25,7 +25,7 @@ i {
 }
 
 .now-showing__card img {
-  box-shadow: 0 6px 12px 0px light-dark(#9C9C9C, #FFC31933);
+  box-shadow: 0 6px 12px 0px light-dark(#9C9C9C, #dbe3ff4b);
 }
 
 [data-dark="true"] {

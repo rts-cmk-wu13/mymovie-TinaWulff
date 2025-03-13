@@ -1,17 +1,57 @@
 
-document.addEventListener("DOMContentLoaded", function () {
-    let savedMovies = readFromLocalStorage("favorites") || [];
-
-
 let root = document.createElement("div");
 root.id ="root";
 document.querySelector("body").append(root); 
+
+//HEADER
+let header = document.createElement("header");
+header.classList.add("bookmark-header");
+root.append(header);
+
+
+let bookmarkHeadline = document.createElement("h2");
+bookmarkHeadline.classList = "bookmark-headline";
+bookmarkHeadline.textContent = "Saved Movies";
+header.append(bookmarkHeadline);
+
+let arrowLink = document.createElement("a");
+arrowLink.classList.add("arrow-link");
+arrowLink.href = "index.html";
+header.append(arrowLink);
+
+let goBackArrow = document.createElement("i");
+goBackArrow.classList.add("fa-solid", "fa-arrow-left-long");
+arrowLink.append(goBackArrow);
+
+// Darkmode knap
+let switchMode = document.createElement("div");
+switchMode.classList.add("switch-container");
+header.append(switchMode);
+
+let switchLabel = document.createElement("label");
+switchLabel.classList.add("switch");
+switchMode.append(switchLabel);
+
+let swicthInput = document.createElement("input");
+swicthInput.type = "checkbox";
+swicthInput.id = "switch";
+
+let sliderRoundCSS = document.createElement("span");
+sliderRoundCSS.classList.add("slider", "round");
+switchLabel.append(swicthInput, sliderRoundCSS);
+
+//SLUT HEADER SLUT
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    let savedMovies = readFromLocalStorage("favorites") || [];
+
 
 let main = document.createElement("main");
 root.append(main);
 
 let savedSection = document.createElement("section");
-savedSection.innerHTML =`<h2>Saved Movies</h2>`;
 main.append(savedSection);
 
 if (savedMovies.length === 0) {
@@ -22,11 +62,11 @@ if (savedMovies.length === 0) {
 savedMovies.forEach(movie => {
     console.log(movie);
     let savedArticle = document.createElement("article");
-    savedArticle.classList.add("popular__card");
+    savedArticle.classList.add("saved__card");
 
     savedArticle.innerHTML = `
-        <h3>${movie.title}</h3>
         <img src="${movie.image}" alt="${movie.title}">
+        <h3>${movie.title}</h3>
         <p>${movie.description}</p>
         <button onclick="removeMovie('${movie.id}')">Remove</button>
     `;
