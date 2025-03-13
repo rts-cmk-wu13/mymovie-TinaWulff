@@ -1,48 +1,5 @@
 
 
-// Hent film-ID fra URL'en
-const urlParams = new URLSearchParams(window.location.search);
-const id = urlParams.get("id"); // Eksempel: hvis URL'en er "movie.html?id=12345"
-
-
-let root = document.createElement("div");
-root.id = "root";
-document.body.append(root);
-
-
-  //HEADER
-  let header = document.createElement("header");
-  header.classList.add("hero-header");
-  root.append(header);
-
-  let arrowLink = document.createElement("a");
-  arrowLink.classList.add("arrow-link");
-  arrowLink.href = "index.html";
-  header.append(arrowLink);
-
-  let goBackArrow = document.createElement("i");
-  goBackArrow.classList.add("fa-solid", "fa-arrow-left-long");
-  arrowLink.append(goBackArrow);
-
-  // Darkmode knap
-  let switchMode = document.createElement("div");
-  switchMode.classList.add("switch-container");
-  header.append(switchMode);
-
-  let switchLabel = document.createElement("label");
-  switchLabel.classList.add("switch");
-  switchMode.append(switchLabel);
-
-  let swicthInput = document.createElement("input");
-  swicthInput.type = "checkbox";
-  swicthInput.id = "switch";
-
-  let sliderRoundCSS = document.createElement("span");
-  sliderRoundCSS.classList.add("slider", "round");
-  switchLabel.append(swicthInput, sliderRoundCSS);
-
-  //SLUT HEADER SLUT
-
 // Hent kun den specifikke film baseret på ID
 fetch(`https://api.themoviedb.org/3/movie/${id}?language=en-US&append_to_response=release_dates,credits,videos`, {
     headers: {
@@ -70,7 +27,7 @@ fetch(`https://api.themoviedb.org/3/movie/${id}?language=en-US&append_to_respons
         console.log(rating);
         //
 
-    
+
         //MAIN
         let main = document.createElement("main");
         root.append(main);
@@ -84,7 +41,7 @@ fetch(`https://api.themoviedb.org/3/movie/${id}?language=en-US&append_to_respons
         heroImg.src = `https://image.tmdb.org/t/p/original${movie.backdrop_path}`
         heroImg.alt = movie.title;
         heroDiv.append(heroImg);
-        
+
         //SECTION
         let detailsSection = document.createElement("section");
         detailsSection.classList.add("details__section");
@@ -127,12 +84,23 @@ fetch(`https://api.themoviedb.org/3/movie/${id}?language=en-US&append_to_respons
             let favorites = readFromLocalStorage("favorites") || [];
             let movieId = this.dataset.favid;
 
-            if (favorites.includes(movieId)) {
-                favorites = favorites.filter(favId => favId !== movieId);
-                bookmarkIcon.classList.replace("fa-solid", "fa-regular"); // Skift tilbage til tomt ikon
+            //lav objekt med data der skal gemmes
+            let movieData = {
+                id: movieId,
+                title: movie.title,
+                image: `https://image.tmdb.org/t/p/w300/${movie.poster_path}`,
+                description: movie.overview
+            };
+
+            // Tjek om filmen allerede er gemt
+            let existingIndex = favorites.findIndex(fav => fav.id === movieId);
+
+            if (existingIndex !== -1) {
+                favorites.splice(existingIndex, 1); // Fjern filmen hvis den allerede er gemt
+                bookmarkIcon.classList.replace("fa-solid", "fa-regular");
             } else {
-                favorites.push(movieId);
-                bookmarkIcon.classList.replace("fa-regular", "fa-solid"); // Skift til udfyldt ikon
+                favorites.push(movieData); // Tilføj filmen hvis den ikke er gemt
+                bookmarkIcon.classList.replace("fa-regular", "fa-solid");
             }
 
             saveToLocalStorage("favorites", favorites);

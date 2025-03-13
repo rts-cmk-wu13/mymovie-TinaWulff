@@ -1,35 +1,10 @@
 
 
 
-.hero-header {
-    height: 2em;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    align-items: center;
-    margin-top: 1em;
-}
 
-.hero-div img {
-    max-width: 100%;
-    min-height: 18.75em;
-    object-fit: cover;
-    grid-area: 1/1/2/-1;    
-}
-
-.hero-header a {
-    /* grid-area: 1/1/2/-1;   */
-    /* color: #fff; */
-    order: 1;
-    /* margin-top: 2em; */
-    margin-left: 1.5em;
-    font-size: 1em;
-    position: absolute;
-    
-    z-index: 10;
-    cursor: pointer;
-}
 
 .hero-header .switch-container {
+    z-index: 1;
     /* grid-area: 1/1/2/-1; */
     order: 1;
     align-self: center;

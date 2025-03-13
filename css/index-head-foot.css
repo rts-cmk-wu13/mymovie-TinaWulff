@@ -1,6 +1,6 @@
 
 
-header {
+.frontpage header {
     width: 100%;
     max-width: 100%;
 
@@ -11,6 +11,18 @@ header {
     margin-bottom: 1em;
     margin-top: 2em;
 }
+
+.hero-header {
+    height: 2em;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    /* margin-top: 1em; */
+    background-color: black;
+    position: relative;
+    top: 20px;
+}
+
 
 h1 {
     justify-self: center;

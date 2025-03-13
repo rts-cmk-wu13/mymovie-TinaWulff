@@ -2,10 +2,32 @@
     height: 100vh;
 }
 
+.hero-div img {
+    max-width: 100%;
+    min-height: 18.75em;
+    object-fit: cover;
+    grid-area: 1/1/2/-1;    
+}
+
+.hero-header a {
+    /* grid-area: 1/1/2/-1;   */
+    /* color: #fff; */
+    order: 1;
+    /* margin-top: 2em; */
+    margin-left: 1.5em;
+    font-size: 1em;
+    position: absolute;
+    
+    z-index: 2;
+    cursor: pointer;
+}
+
+
+
  main {
 position: relative;
 top: -48px;
-z-index: -1;
+z-index: 0;
  }
 
 .details__section {
@@ -15,7 +37,7 @@ z-index: -1;
     padding: 2em;
     position: relative;
     bottom: 2em;
-    z-index: 2;
+    z-index: 10;
     /* background-color: #fff; */
     background-color: light-dark(#fff, #15141F);
 }
@@ -174,6 +196,3 @@ footer i {
 
 /* BOOKMARKING */
 
-.favorite_btn--selected {
-    
-}

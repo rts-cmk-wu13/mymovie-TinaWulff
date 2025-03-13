@@ -1,13 +1,15 @@
 
-// HEADER
-
+// ROOT WRAPPER DIV
 let root = document.createElement("div");
 root.id ="root";
+root.classList.add("frontpage");
 document.querySelector("body").append(root); 
 
+
+
+// HEADER
 let header = document.createElement("header");
 root.append(header);      //appender header i body
-
 
 let menu = document.createElement("nav");
 let menuIcon = document.createElement("i");
