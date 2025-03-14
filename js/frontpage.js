@@ -294,9 +294,9 @@ fetchPopular();
 window.addEventListener("load", () => {
     let savedPosition = sessionStorage.getItem("mainPageScrollPosition");
     if (savedPosition) {
-        window.scrollTo(0, parseInt(savedPosition));
+        window.scrollTo(0, 2500);
         console.log("Restored scroll position:", savedPosition);
-        sessionStorage.removeItem("mainPageScrollPosition"); // Ensure it's only used once
+        //sessionStorage.removeItem("mainPageScrollPosition"); // Ensure it's only used once
     }
 });
 
