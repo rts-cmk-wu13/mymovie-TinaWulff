@@ -14,10 +14,17 @@ bookmarkHeadline.classList = "bookmark-headline";
 bookmarkHeadline.textContent = "Saved Movies";
 header.append(bookmarkHeadline);
 
+
 let arrowLink = document.createElement("a");
 arrowLink.classList.add("arrow-link");
-arrowLink.href = "index.html";
+
+arrowLink.addEventListener("click", function(event) {
+  event.preventDefault(); // Prevent default anchor behavior
+  window.history.back(); // Go back to the previous page (like clicking the browsers "back-arrow")
+});
+
 header.append(arrowLink);
+
 
 let goBackArrow = document.createElement("i");
 goBackArrow.classList.add("fa-solid", "fa-arrow-left-long");
@@ -68,7 +75,7 @@ savedMovies.forEach(movie => {
         <img src="${movie.image}" alt="${movie.title}">
         <h3>${movie.title}</h3>
         <p>${movie.description}</p>
-        <button onclick="removeMovie('${movie.id}')">Remove</button>
+        <button class="genre" onclick="removeMovie('${movie.id}')"><i class="fa-solid fa-trash"></i>Remove</button>
     `;
 
     savedSection.appendChild(savedArticle);

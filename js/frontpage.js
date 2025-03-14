@@ -1,3 +1,32 @@
+// LOADING PREVIOUS SCROLL POSITION
+/*document.addEventListener('DOMContentLoaded', function() {
+    const currentPage = window.location.pathname;
+    const savedPosition = sessionStorage.getItem(`scrollPosition_${currentPage}`);
+    if (savedPosition) {
+      window.scrollTo(0, parseInt(savedPosition));
+      sessionStorage.removeItem(`scrollPosition_${currentPage}`);
+    }
+  });*/
+
+  // Function to save scroll position
+  function saveScrollPosition() {
+    let scrollPosition = window.scrollY;
+    sessionStorage.setItem("mainPageScrollPosition", scrollPosition);
+    console.log("Saved scroll position:", scrollPosition);
+}
+
+  document.addEventListener("DOMContentLoaded", function() {
+
+    /*
+    // Restore scroll position if returning to this page
+    let savedPosition = sessionStorage.getItem('mainPageScrollPosition');
+    if (savedPosition) {
+      setTimeout(() => {
+        window.scrollTo(0, parseInt(savedPosition));
+        sessionStorage.removeItem('mainPageScrollPosition');
+      }, 100); // Small delay to ensure content is loaded
+    }
+*/
 
 // ROOT WRAPPER DIV
 let root = document.createElement("div");
@@ -260,6 +289,24 @@ function fetchPopular() {
 fetchMovie();
 fetchPopular();
 
+
+// SCROLL POSITION LOAD
+window.addEventListener("load", () => {
+    let savedPosition = sessionStorage.getItem("mainPageScrollPosition");
+    if (savedPosition) {
+        window.scrollTo(0, parseInt(savedPosition));
+        console.log("Restored scroll position:", savedPosition);
+        sessionStorage.removeItem("mainPageScrollPosition"); // Ensure it's only used once
+    }
+});
+
+ // Adding click event to save scroll position everytime when clicking on a movie
+ document.addEventListener("click", function (event) {
+    if (event.target.closest(".now-showing__linkCard, .popular__linkCard")) {
+        saveScrollPosition();
+    }
+});
+
 // footer
 let footer = document.createElement("footer");
 root.append(footer);
@@ -286,3 +333,4 @@ bookmarkIcon.addEventListener("click", function () {
 footer.appendChild(movieLink);
 footer.appendChild(ticketLink);
 footer.appendChild(bookmarkIcon);
+})

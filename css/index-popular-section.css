@@ -44,16 +44,16 @@ gap: 0.5em;
     box-sizing: border-box;
 }
 
-.genre {
-    background-color: #DBE3FF;
+/*.genre {
+    /* background-color: #DBE3FF;
     padding: 2% 5%;
     text-transform: uppercase;
     font-size: 0.5em;
     font-weight: bold;
-    color: #88A4E8;
+    /* color: #88A4E8; 
     border-radius: 15px;
     margin: 0.5em 0;
-}
+}*/
 
 .fa-clock {
     /* color: #000; */

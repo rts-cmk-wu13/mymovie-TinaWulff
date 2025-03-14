@@ -54,9 +54,15 @@
     cursor: pointer;
 }
 
+
+
 .hero-header i {
     color: light-dark(#fff, #15141F);
     text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.9);
+}
+
+.arrow-detail-site i{
+    color: light-dark(#fff,#fff);
 }
 
 .hero-header .switch-container {
@@ -66,9 +72,6 @@
     align-self: center;
     /* margin-top: 2em; */
     margin-right: 1.5em;
-}
-
-.arrow-link {
 }
 
 .detail__header {

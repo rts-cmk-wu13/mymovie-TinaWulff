@@ -16,8 +16,37 @@ header.classList.add("hero-header");
 root.append(header);
 
 let arrowLink = document.createElement("a");
-arrowLink.classList.add("arrow-link");
-arrowLink.href = "index.html";
+arrowLink.classList.add("arrow-link", "arrow-detail-site");
+
+// GO BACK FUNCTION GO TO PREV SCROLL POSITION
+// When leaving a page, save the scroll position
+window.addEventListener('beforeunload', function() {
+    const currentPage = window.location.pathname;
+    const scrollPosition = window.scrollY;
+    sessionStorage.setItem(`scrollPosition_${currentPage}`, scrollPosition);
+  });
+  
+  // For your back button
+  arrowLink.addEventListener("click", function(event) {
+    event.preventDefault();
+    window.history.back();
+  });
+  
+
+/* //Using the newer ScrollRestoration API (supported in modern browsers):
+if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'auto'; // Let the browser handle scroll restoration
+  }
+  
+  // Your back button remains simple
+  arrowLink.addEventListener("click", function(event) {
+    event.preventDefault();
+    window.history.back();
+  });
+*/
+
+
+
 header.append(arrowLink);
 
 let goBackArrow = document.createElement("i");

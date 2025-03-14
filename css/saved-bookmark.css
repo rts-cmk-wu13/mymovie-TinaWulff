@@ -38,13 +38,23 @@ article.saved__card {
     .saved__card button {
         grid-column: 2;
         grid-row: 3;
-        width: 6em;
-        height: 2em;
+        width: 9em;
+        height: 2.5em;
+        display: flex;
+     
         border-radius: 15px;
         border: none;
         background-color: #DBE3FF;
-        color: #88A4E8;
         font-weight: bold;
         font-size: 8px;
         justify-self: end;
+        justify-items: center;
+        align-items: center;
+        justify-content: center;
     }
+
+    .fa-trash {
+        color: #4275ed;
+        margin-right: 0.6em;
+    }
+
