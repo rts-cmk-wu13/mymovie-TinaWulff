@@ -20,6 +20,8 @@ arrowLink.classList.add("arrow-link", "arrow-detail-site");
 
 // GO BACK FUNCTION GO TO PREV SCROLL POSITION
 // When leaving a page, save the scroll position
+
+
 window.addEventListener('beforeunload', function() {
     const currentPage = window.location.pathname;
     const scrollPosition = window.scrollY;
