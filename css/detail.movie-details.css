@@ -1,0 +1,172 @@
+#root {
+    height: 100vh;
+}
+
+.hero-div img {
+    max-width: 100%;
+    min-height: 18.75em;
+    object-fit: cover;
+    grid-area: 1/1/2/-1;    
+}
+
+.hero-header a {
+    /* grid-area: 1/1/2/-1;   */
+    /* color: #fff; */
+    order: 1;
+    /* margin-top: 2em; */
+    margin-left: 1.5em;
+    font-size: 1em;
+    position: absolute;
+    
+    z-index: 2;
+    cursor: pointer;
+}
+
+
+
+main {
+position: relative;
+top: -48px;
+z-index: 0;
+ }
+
+.details__section {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 10px;
+    padding: 2em;
+    position: relative;
+    bottom: 2em;
+    z-index: 10;
+    /* background-color: #fff; */
+    background-color: light-dark(#fff, #15141F);
+}
+
+
+
+.bookmark_btn {
+    background: none;
+    border: none;
+}
+
+.bookmark_btn i {
+font-size: 1.5em;
+}
+
+.detail__fact-section {
+    display: grid;
+    row-gap: 0.7em;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 1em 0 2em;
+}
+
+.detail__fact-section .point {
+    grid-row: 1;
+    margin-bottom: 1em;
+}
+
+.detail__fact-header {
+    grid-row: 3;
+    font-size: 12px;
+    color: #9C9C9C;
+    font-weight: 300;
+}
+
+.detail__fact-value {
+    grid-row: 4;
+    font-weight: bold;
+    /* color: #000; */
+}
+
+.detail__header h1 {
+    font-family: "Mulish", sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.genre-container {
+    grid-row: 2;
+    grid-column: span 3;
+    display: flex;
+    justify-content: start;
+    margin-bottom: 1em;
+}
+
+.descript__headline {
+    margin: 2em 0 1em;
+}
+
+.detail__descript-section p {
+    font-size: 12px;
+    line-height: 22px;
+}
+
+.trailer-section {
+    margin-top: 2em;
+}
+
+.trailer-container {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    margin-top: 1em;
+}
+
+.detail__cast-section h2 {
+    margin: 1.5em 0 1em 0;
+    font-size: 16px;
+}
+
+.details__cast-section__castDiv {
+    display: flex;
+    gap: 0.7em;
+    overflow-x: auto;
+}
+
+.details__cast-section__castDiv img {
+    width: 5.8em;
+    height: 5.8em;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.details__cast-section__castDiv p {
+    font-size: 0.75em;
+    color: "#000";
+    margin-bottom: 1em;
+}
+
+
+
+
+/* FOOTER */
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 1em 1em;
+    /* Justeret padding */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    /* Centrerer ikonerne vertikalt */
+    /* background-color: #fff; */
+    box-shadow: 0 -4px 8px 0 rgba(0, 0, 0, 0.15);
+    /* Skygge på toppen */
+    z-index: 5;
+}
+
+
+footer i {
+    font-size: 1.5em;
+    color: #BCBCCD;
+    display: inline-block;
+}
+
+.fa-ticket-simple {
+    transform: rotate(90deg);
+}
+
+
+/* BOOKMARKING */
+

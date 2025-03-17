@@ -1,0 +1,138 @@
+
+
+#root-frontpage header, .bookmark-header {
+    width: 100%;
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    /* margin: 2em; */
+    margin-bottom: 1em;
+    margin-top: 2em;
+}
+
+.hero-header {
+    height: 2em;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    /* margin-top: 1em; */
+    position: relative;
+    top: 20px;
+    /* padding-top: 2em; */
+}
+
+.bookmark-headline {
+    grid-column: 2;
+    justify-self: center;
+    font-size: 16px;
+    align-self: center;
+    margin-bottom: 0;
+    color: light-dark(#15141F, #DBE3FF);
+}
+
+.bookmark-header {
+    position: relative;
+    top: 0;
+    height: 60px;
+    margin-bottom: 2em;
+    }
+
+    .bookmark-header i {
+        color: light-dark(#15141F, #fff);
+    }
+
+.hero-header a, .bookmark-header a {
+    /* grid-area: 1 / 1 / 2 / -1; */
+    /* color: #fff; */
+    order: 1;
+    /* margin-top: 2em; */
+    margin-left: 1.5em;
+    font-size: 1em;
+    position: absolute;
+    z-index: 2;
+    cursor: pointer;
+}
+
+
+
+.hero-header i {
+    color: light-dark(#fff, #15141F);
+    text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.9);
+}
+
+.arrow-detail-site i{
+    color: light-dark(#fff,#fff);
+}
+
+.hero-header .switch-container {
+    z-index: 1;
+    /* grid-area: 1/1/2/-1; */
+    order: 1;
+    align-self: center;
+    /* margin-top: 2em; */
+    margin-right: 1.5em;
+}
+
+.detail__header {
+    display: flex;
+    justify-content: space-between;
+}
+
+ .fa-arrow-left-long {
+    font-size: 1.2em;
+    color: light-dark(#fff, #15141F);
+    z-index: 2;
+}
+
+h1 {
+    justify-self: center;
+    font-size: 16px;
+    font-family: "merriweather", serif;
+}
+
+nav {
+    margin-left: 1em;
+}
+
+.switch {
+margin-right: 1em;
+}
+
+
+/* FOOTER */
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 1em 1em; /* Justeret padding */
+
+    display: flex;
+    justify-content: space-around;
+
+    align-items: center; /* Centrerer ikonerne vertikalt */
+    /* background-color: #fff; */
+    box-shadow: 0 -4px 8px 0 rgba(0, 0, 0, 0.15); /* Skygge på toppen */
+    z-index: 5;
+}
+
+
+
+footer i {
+    font-size: 1.5em;
+    color: #BCBCCD;
+    display: inline-block;
+}
+
+.fa-ticket-simple {
+ transform: rotate(90deg);
+}
+
+
+
+/*
+main {
+    overflow: auto; //er i anden fil
+}
+/*for at footer kan side over main og main kan scroller bagved*/

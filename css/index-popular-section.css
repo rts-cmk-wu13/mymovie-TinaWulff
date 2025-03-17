@@ -1,0 +1,61 @@
+
+.sectionPopular {
+    width: 100%;
+    max-width: 100%;
+    /* margin: 1em; */
+    /* display: grid; */
+    margin: 1em;
+
+}
+
+.popular__card {
+    width: 100%;
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: 25% 65%;
+    gap: 5%;
+    margin: 1em 0;
+    align-items: stretch;
+}
+
+.sectionPopular img {
+display: block;
+grid-column: 1;
+width: 100%;
+max-width: 100%;
+height: auto;
+
+}
+
+.details-container {
+grid-column: 2;
+max-width: 100%;
+display: flex;
+flex-direction: column;
+gap: 0.5em;
+}
+
+.genre-container {
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    gap: 0.5em;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+}
+
+/*.genre {
+    /* background-color: #DBE3FF;
+    padding: 2% 5%;
+    text-transform: uppercase;
+    font-size: 0.5em;
+    font-weight: bold;
+    /* color: #88A4E8; 
+    border-radius: 15px;
+    margin: 0.5em 0;
+}*/
+
+.fa-clock {
+    /* color: #000; */
+    margin-right: 0.5em;
+}

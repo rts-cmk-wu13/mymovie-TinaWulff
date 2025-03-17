@@ -1,0 +1,75 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 16px;
+    font-family: "mulish", sans-serif;
+}
+
+/* section {
+    margin: 1em 2em;
+} */
+
+h1, h2 {
+    font-family: "merriweather", serif;
+
+}
+
+h1 {
+    align-self: center;
+}
+
+h2 {
+    font-size: 16px;
+    margin-bottom: 1em;
+}
+
+h3 {
+    font-size: 14px;
+}
+
+p {
+    font-size: 12px;
+}
+
+#root {
+width: 100%;
+/* max-width: 500px; */
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+
+
+p {
+    color: #9C9C9C;
+}
+
+.fa-star {
+    color: #FFC319;
+    margin-right: 0.5em;
+}
+
+.genre {
+    color: #4275ed; /* Har valgt en mørkere blå for bedre kontrakt/brugervenlighed */
+    background-color: #DBE3FF;
+    padding: 1.6% 4%;
+    text-transform: uppercase;
+    font-size: 0.5em;
+    font-weight: bold;
+    border-radius: 15px;
+    margin-right: 1em;
+
+}
